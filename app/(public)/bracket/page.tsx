@@ -184,41 +184,45 @@ export default function BracketPage() {
             {/* Full bracket view for 8강 */}
             {activeRound === '8강' && (
               <div>
-                <div className="flex gap-8 items-start">
-                  {/* 8강 column */}
-                  <div>
-                    <h3 className="text-sm font-bold text-[#6B7280] mb-4 uppercase tracking-wide">8강</h3>
-                    <div className="flex flex-col gap-6">
-                      {quarterFinals.map((match) => (
-                        <div key={match.id} className="relative">
-                          <MatchCard match={match} />
-                          {/* Connector line right */}
-                          <div className="absolute top-1/2 -right-8 w-8 border-t-2 border-[#E5E7EB]" />
-                        </div>
-                      ))}
-                    </div>
+                {/* Column headers */}
+                <div className="flex mb-4">
+                  <div className="w-56">
+                    <h3 className="text-sm font-bold text-[#6B7280] uppercase tracking-wide">8강</h3>
                   </div>
+                  <div className="w-16" />
+                  <div className="w-56">
+                    <h3 className="text-sm font-bold text-[#6B7280] uppercase tracking-wide">4강</h3>
+                  </div>
+                </div>
 
-                  {/* Vertical connectors + 4강 column */}
-                  <div className="relative flex items-start">
-                    {/* Left vertical lines connecting pairs */}
-                    <div className="relative w-0 mr-8">
-                      {/* Top bracket connector (match 1 → 2) */}
-                      <div className="absolute" style={{ top: '52px', left: 0, height: 'calc(130px + 24px)', borderRight: '2px solid #E5E7EB', borderTop: '2px solid #E5E7EB', borderBottom: '2px solid #E5E7EB', width: '0' }} />
-                      {/* Bottom bracket connector (match 3 → 4) */}
-                      <div className="absolute" style={{ top: 'calc(52px + 130px + 24px + 130px + 24px)', left: 0, height: 'calc(130px + 24px)', borderRight: '2px solid #E5E7EB', borderTop: '2px solid #E5E7EB', borderBottom: '2px solid #E5E7EB', width: '0' }} />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-[#6B7280] mb-4 uppercase tracking-wide">4강</h3>
-                      <div className="flex flex-col gap-6" style={{ marginTop: 'calc(65px)' }}>
-                        {semiFinals.map((match) => (
-                          <div key={match.id} className="relative" style={{ marginBottom: '130px' }}>
-                            <MatchCard match={match} />
-                          </div>
-                        ))}
+                {/* Bracket pairs */}
+                <div className="flex flex-col gap-8">
+                  {([
+                    [quarterFinals[0], quarterFinals[1], semiFinals[0]],
+                    [quarterFinals[2], quarterFinals[3], semiFinals[1]],
+                  ] as [Match, Match, Match][]).map(([qf1, qf2, sf], i) => (
+                    <div key={i} className="flex items-stretch">
+                      {/* Two QF cards */}
+                      <div className="flex flex-col gap-4 shrink-0">
+                        <MatchCard match={qf1} />
+                        <MatchCard match={qf2} />
+                      </div>
+
+                      {/* Bracket connector */}
+                      <div className="flex shrink-0 w-16">
+                        <div className="flex flex-col w-8">
+                          <div className="flex-1 border-r-2 border-t-2 border-[#D1D5DB] rounded-tr-md" />
+                          <div className="flex-1 border-r-2 border-b-2 border-[#D1D5DB] rounded-br-md" />
+                        </div>
+                        <div className="self-center w-8 border-t-2 border-[#D1D5DB]" />
+                      </div>
+
+                      {/* SF card centered */}
+                      <div className="self-center shrink-0">
+                        <MatchCard match={sf} />
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             )}

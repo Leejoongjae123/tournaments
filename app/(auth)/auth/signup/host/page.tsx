@@ -69,7 +69,7 @@ export default function HostSignupPage() {
 
         {/* Step 1: 기본정보 */}
         {currentStep === 1 && (
-          <form className="space-y-4" onSubmit={e => { e.preventDefault(); setCurrentStep(2) }}>
+          <form className="space-y-4" onSubmit={e => { e.preventDefault(); setCurrentStep(2); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
             <div>
               <label className={labelClass}>담당자명</label>
               <input type="text" value={managerName} onChange={e => setManagerName(e.target.value)} placeholder="담당자 이름을 입력하세요" className={inputClass} />

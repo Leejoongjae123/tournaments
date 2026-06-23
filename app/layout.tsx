@@ -3,6 +3,7 @@ import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import BottomNav from "./components/BottomNav";
+import SitemapFab from "./components/SitemapFab";
 
 const notoSansKR = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Header />
         <main className="pb-16 md:pb-0">{children}</main>
         <BottomNav />
+        <SitemapFab />
       </body>
     </html>
   );

@@ -50,7 +50,7 @@ export default function PlayerSignupPage() {
 
         {/* Step 1 */}
         {currentStep === 1 && (
-          <form className="space-y-4" onSubmit={e => { e.preventDefault(); setCurrentStep(2) }}>
+          <form className="space-y-4" onSubmit={e => { e.preventDefault(); setCurrentStep(2); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
             <div>
               <label className={labelClass}>이름</label>
               <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="홍길동" className={inputClass} />
